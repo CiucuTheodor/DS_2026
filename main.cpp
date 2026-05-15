@@ -30,6 +30,16 @@ void print_book(Book b) {
     cout << "Book [ISBN: " << b.isbn << ", Price: $" << fixed << setprecision(2) << b.price << "]\n";
 }
 
+// Step 3: Create Node
+TreeNode* create_node(Book b) {
+    TreeNode* newNode = new TreeNode;
+    newNode->info = b;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+    newNode->balanceFactor = 0;
+    return newNode;
+}
+
 int main() {
     return 0;
 }
