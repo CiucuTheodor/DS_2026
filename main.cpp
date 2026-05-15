@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Step 1: Define Structures
 struct Book {
     int isbn;
     float price;
@@ -16,7 +15,6 @@ struct TreeNode {
     int balanceFactor;
 };
 
-// Step 2: Book Functions
 Book read_book() {
     Book b;
     cout << "Enter ISBN: ";
@@ -30,7 +28,6 @@ void print_book(Book b) {
     cout << "Book [ISBN: " << b.isbn << ", Price: $" << fixed << setprecision(2) << b.price << "]\n";
 }
 
-// Step 3: Create Node
 TreeNode* create_node(Book b) {
     TreeNode* newNode = new TreeNode;
     newNode->info = b;
@@ -40,7 +37,6 @@ TreeNode* create_node(Book b) {
     return newNode;
 }
 
-// Step 4: Tree Traversal
 void print(TreeNode* root) {
     if (root != nullptr) {
         print_book(root->info);
@@ -49,7 +45,6 @@ void print(TreeNode* root) {
     }
 }
 
-// Step 5: Tree Height and Balance Factor
 int tree_height(TreeNode* root) {
     if (root == nullptr) {
         return 0;
@@ -66,7 +61,6 @@ int balance_factor(TreeNode* root) {
     return tree_height(root->left) - tree_height(root->right);
 }
 
-// Step 6: Rotations
 TreeNode* rotate_left(TreeNode* x) {
     TreeNode* y = x->right;
     TreeNode* T2 = y->left;
@@ -103,7 +97,6 @@ TreeNode* rotate_right_left(TreeNode* root) {
     return rotate_left(root);
 }
 
-// Step 7: Balancing Function
 TreeNode* balance(TreeNode* root) {
     if (root == nullptr) return root;
 
@@ -126,7 +119,6 @@ TreeNode* balance(TreeNode* root) {
     return root;
 }
 
-// Step 8: Insert Node
 TreeNode* insert_node(Book b, TreeNode* root) {
     if (root == nullptr) {
         return create_node(b);
@@ -144,7 +136,6 @@ TreeNode* insert_node(Book b, TreeNode* root) {
     return balance(root);
 }
 
-// Step 9: Delete Node
 TreeNode* delete_node(int isbn, TreeNode* root);
 
 TreeNode* get_min_value_node(TreeNode* node) {
@@ -189,7 +180,6 @@ TreeNode* delete_node(int isbn, TreeNode* root) {
     return balance(root);
 }
 
-// Step 10: Main Function
 int main() {
     TreeNode* root = nullptr;
     int num_books;
