@@ -49,6 +49,23 @@ void print(TreeNode* root) {
     }
 }
 
+// Step 5: Tree Height and Balance Factor
+int tree_height(TreeNode* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int leftHeight = tree_height(root->left);
+    int rightHeight = tree_height(root->right);
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+}
+
+int balance_factor(TreeNode* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return tree_height(root->left) - tree_height(root->right);
+}
+
 int main() {
     return 0;
 }
