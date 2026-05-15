@@ -40,6 +40,15 @@ TreeNode* create_node(Book b) {
     return newNode;
 }
 
+// Step 4: Tree Traversal
+void print(TreeNode* root) {
+    if (root != nullptr) {
+        print_book(root->info);
+        print(root->left);
+        print(root->right);
+    }
+}
+
 int main() {
     return 0;
 }
