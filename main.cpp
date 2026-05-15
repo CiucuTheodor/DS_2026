@@ -16,6 +16,20 @@ struct TreeNode {
     int balanceFactor;
 };
 
+// Step 2: Book Functions
+Book read_book() {
+    Book b;
+    cout << "Enter ISBN: ";
+    cin >> b.isbn;
+    cout << "Enter Price: ";
+    cin >> b.price;
+    return b;
+}
+
+void print_book(Book b) {
+    cout << "Book [ISBN: " << b.isbn << ", Price: $" << fixed << setprecision(2) << b.price << "]\n";
+}
+
 int main() {
     return 0;
 }
