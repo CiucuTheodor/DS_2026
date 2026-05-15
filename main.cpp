@@ -103,6 +103,47 @@ TreeNode* rotate_right_left(TreeNode* root) {
     return rotate_left(root);
 }
 
+// Step 7: Balancing Function
+TreeNode* balance(TreeNode* root) {
+    if (root == nullptr) return root;
+
+    root->balanceFactor = balance_factor(root);
+
+    if (root->balanceFactor > 1) { // Left heavy
+        if (balance_factor(root->left) < 0) {
+            root = rotate_left_right(root);
+        } else {
+            root = rotate_right(root);
+        }
+    } else if (root->balanceFactor < -1) { // Right heavy
+        if (balance_factor(root->right) > 0) {
+            root = rotate_right_left(root);
+        } else {
+            root = rotate_left(root);
+        }
+    }
+
+    return root;
+}
+
+// Step 8: Insert Node
+TreeNode* insert_node(Book b, TreeNode* root) {
+    if (root == nullptr) {
+        return create_node(b);
+    }
+    
+    if (b.isbn < root->info.isbn) {
+        root->left = insert_node(b, root->left);
+    } else if (b.isbn > root->info.isbn) {
+        root->right = insert_node(b, root->right);
+    } else {
+        // ISBN already exists
+        return root;
+    }
+    
+    return balance(root);
+}
+
 int main() {
     return 0;
 }
