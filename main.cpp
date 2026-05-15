@@ -144,6 +144,51 @@ TreeNode* insert_node(Book b, TreeNode* root) {
     return balance(root);
 }
 
+// Step 9: Delete Node
+TreeNode* delete_node(int isbn, TreeNode* root);
+
+TreeNode* get_min_value_node(TreeNode* node) {
+    TreeNode* current = node;
+    while (current->left != nullptr) {
+        current = current->left;
+    }
+    return current;
+}
+
+TreeNode* delete_root_node(TreeNode* root) {
+    if (root == nullptr) return root;
+
+    if (root->left == nullptr) {
+        TreeNode* temp = root->right;
+        delete root;
+        return balance(temp);
+    } else if (root->right == nullptr) {
+        TreeNode* temp = root->left;
+        delete root;
+        return balance(temp);
+    }
+
+    TreeNode* temp = get_min_value_node(root->right);
+    root->info = temp->info;
+    root->right = delete_node(temp->info.isbn, root->right);
+    
+    return balance(root);
+}
+
+TreeNode* delete_node(int isbn, TreeNode* root) {
+    if (root == nullptr) return root;
+
+    if (isbn < root->info.isbn) {
+        root->left = delete_node(isbn, root->left);
+    } else if (isbn > root->info.isbn) {
+        root->right = delete_node(isbn, root->right);
+    } else {
+        return delete_root_node(root);
+    }
+
+    return balance(root);
+}
+
 int main() {
     return 0;
 }
