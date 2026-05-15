@@ -189,6 +189,31 @@ TreeNode* delete_node(int isbn, TreeNode* root) {
     return balance(root);
 }
 
+// Step 10: Main Function
 int main() {
+    TreeNode* root = nullptr;
+    int num_books;
+    
+    cout << "Enter number of books to insert: ";
+    cin >> num_books;
+    
+    for (int i = 0; i < num_books; ++i) {
+        cout << "\nBook " << (i + 1) << ":" << endl;
+        Book b = read_book();
+        root = insert_node(b, root);
+    }
+    
+    cout << "\n--- AVL Tree Preorder Traversal ---" << endl;
+    print(root);
+    
+    int delete_isbn;
+    cout << "\nEnter ISBN of book to delete: ";
+    cin >> delete_isbn;
+    
+    root = delete_node(delete_isbn, root);
+    
+    cout << "\n--- AVL Tree Preorder Traversal after Deletion ---" << endl;
+    print(root);
+    
     return 0;
 }
